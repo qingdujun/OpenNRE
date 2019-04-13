@@ -207,3 +207,22 @@ BiRNN | 0.3352 | 0.3575 | 0.3244
 3. **A Soft-label Method for Noise-tolerant Distantly Supervised Relation Extraction.** _Tianyu Liu, Kexiang Wang, Baobao Chang, Zhifang Sui._ EMNLP2017. [paper](http://aclweb.org/anthology/D17-1189)
 
 4. **Reinforcement Learning for Relation Classification from Noisy Data.** _Jun Feng, Minlie Huang, Li Zhao, Yang Yang, Xiaoyan Zhu._ AAAI2018. [paper](https://tianjun.me/static/essay_resources/RelationExtraction/Paper/AAAI2018Denoising.pdf)
+
+
+# FQA
+
+## '.' SyntaxError: invalid character in identifier
+```
+Traceback (most recent call last):
+  File "train_demo.py", line 1, in <module>
+    import nrekit
+  File "/home/qingdujun/googol/opennre/OpenNRE/nrekit/__init__.py", line 1, in <module>
+    from . import data_loader
+  File "/home/qingdujun/googol/opennre/OpenNRE/nrekit/data_loader.py", line 385
+    name_prefix = ‘.’.join(os.path.split(file_name)[-1].split('.')[:-1])
+                  ^
+SyntaxError: invalid character in identifier
+```
+
+
+## ...
