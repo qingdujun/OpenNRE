@@ -210,6 +210,9 @@ BiRNN | 0.3352 | 0.3575 | 0.3244
 
 
 # FQA
+## 0 TypeError: expected bytes, str found
+
+A: `f = open(file_name, 'rb')` -> `f = open(file_name, 'r')`
 
 ## 1 SyntaxError: invalid character in identifier
 ```
@@ -258,7 +261,7 @@ A: using `from .network import *`
 
 A: [Status: CUDA driver version is insufficient for CUDA runtime version](https://qingdujun.blog.csdn.net/article/details/89287669)
 
-## TypeError: Object of type 'bytes' is not JSON serializable
+## 5 TypeError: Object of type 'bytes' is not JSON serializable
 
 ```
 Traceback (most recent call last):
@@ -280,7 +283,8 @@ TypeError: Object of type 'bytes' is not JSON serializable
 ```
 As you can see `pred_result`,
 ```
-{'score': 1.0407674722046067e-08, 'entpair': b'/guid/9202a8c04000641f80000000002bfc64#/guid/9202a8c04000641f800000000012877f', 'relation': 12}, {'score': 8.881245072700494e-09, 'entpair': b'/guid/9202a8c04000641f80000000002bfc64#/guid/9202a8c04000641f800000000012877f', 'relation': 13}, 
+{'score': 1.0407674722046067e-08, 'entpair': b'/guid/9202a8c04000641f80000000002bfc64#/guid/9202a8c04000641f800000000012877f', 'relation': 12}, 
+{'score': 8.881245072700494e-09, 'entpair': b'/guid/9202a8c04000641f80000000002bfc64#/guid/9202a8c04000641f800000000012877f', 'relation': 13}, 
 ```
 The `entpair` is bytes.
 
