@@ -211,7 +211,7 @@ BiRNN | 0.3352 | 0.3575 | 0.3244
 
 # FQA
 
-## '.' SyntaxError: invalid character in identifier
+## 1 SyntaxError: invalid character in identifier
 ```
 Traceback (most recent call last):
   File "train_demo.py", line 1, in <module>
@@ -224,5 +224,64 @@ Traceback (most recent call last):
 SyntaxError: invalid character in identifier
 ```
 
+A: modify Chinese `’` to  English `'`
 
-## ...
+## 2 ModuleNotFoundError: No module named 'framework'
+```
+Traceback (most recent call last):
+  File "train_demo.py", line 1, in <module>
+    import nrekit
+  File "/home/qingdujun/googol/opennre/OpenNRE/nrekit/__init__.py", line 4, in <module>
+    from . import rl
+  File "/home/qingdujun/googol/opennre/OpenNRE/nrekit/rl.py", line 8, in <module>
+    import framework
+ModuleNotFoundError: No module named 'framework'
+```
+A: using `from . import framework`
+
+
+## 3 ModuleNotFoundError: No module named 'network'
+```
+Traceback (most recent call last):
+  File "train_demo.py", line 1, in <module>
+    import nrekit
+  File "/home/qingdujun/googol/opennre/OpenNRE/nrekit/__init__.py", line 4, in <module>
+    from . import rl
+  File "/home/qingdujun/googol/opennre/OpenNRE/nrekit/rl.py", line 9, in <module>
+    import network
+ModuleNotFoundError: No module named 'network'
+```
+
+A: using `from .network import *`
+
+## 4 Status: CUDA driver version is insufficient for CUDA runtime version
+
+A: [Status: CUDA driver version is insufficient for CUDA runtime version](https://qingdujun.blog.csdn.net/article/details/89287669)
+
+## TypeError: Object of type 'bytes' is not JSON serializable
+
+```
+Traceback (most recent call last):
+  File "test_demo.py", line 102, in <module>
+    json.dump(pred_result, outfile)
+  File "/home/qingdujun/Applications/anaconda3/envs/tf_gpu/lib/python3.6/json/__init__.py", line 179, in dump
+    for chunk in iterable:
+  File "/home/qingdujun/Applications/anaconda3/envs/tf_gpu/lib/python3.6/json/encoder.py", line 428, in _iterencode
+    yield from _iterencode_list(o, _current_indent_level)
+  File "/home/qingdujun/Applications/anaconda3/envs/tf_gpu/lib/python3.6/json/encoder.py", line 325, in _iterencode_list
+    yield from chunks
+  File "/home/qingdujun/Applications/anaconda3/envs/tf_gpu/lib/python3.6/json/encoder.py", line 404, in _iterencode_dict
+    yield from chunks
+  File "/home/qingdujun/Applications/anaconda3/envs/tf_gpu/lib/python3.6/json/encoder.py", line 437, in _iterencode
+    o = _default(o)
+  File "/home/qingdujun/Applications/anaconda3/envs/tf_gpu/lib/python3.6/json/encoder.py", line 180, in default
+    o.__class__.__name__)
+TypeError: Object of type 'bytes' is not JSON serializable
+```
+As you can see `pred_result`,
+```
+{'score': 1.0407674722046067e-08, 'entpair': b'/guid/9202a8c04000641f80000000002bfc64#/guid/9202a8c04000641f800000000012877f', 'relation': 12}, {'score': 8.881245072700494e-09, 'entpair': b'/guid/9202a8c04000641f80000000002bfc64#/guid/9202a8c04000641f800000000012877f', 'relation': 13}, 
+```
+The `entpair` is bytes.
+
+A: add str = bytes.decode(s), such as `'entpair': bytes.decode(batch_data['entpair'][idx].encode('utf-8')),`

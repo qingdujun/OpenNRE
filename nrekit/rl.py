@@ -5,7 +5,7 @@ import numpy as np
 import sys
 import math
 import time
-import framework
+from . import framework
 import network
 
 class policy_agent(framework.re_model):
